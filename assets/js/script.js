@@ -30,15 +30,26 @@ $(document).ready(function () {
                 $(this).removeClass('present')
                 $(this).addclass('future')
             }
+            
 
         })
     }
 
     updateHour()
 
+    setInterval(updateHour, 15000)
 
 
+    // Event listener to save buttons
 
+    $('.saveBtn').click(function (){
+        // grab values of the text areas (class of descripton)
+        // Save to local storage using id's as keys and the 
+        // values of the text areas for the values
+
+    })
+
+    // load any saved data from local storage
 
 
 
