@@ -7,7 +7,7 @@ $(document).ready(function () {
         $('#currentDay').text(dayjs().format
             ('dddd, MMMM D, YYYY'))
         $('#currentTime').text(dayjs().format
-        ('h:mm:ss'))
+            ('h:mm:ss'))
     }
 
     // interval to display the time and update every second
@@ -36,7 +36,7 @@ $(document).ready(function () {
                 $(this).removeClass('present')
                 $(this).addclass('future')
             }
-            
+
 
         })
     }
@@ -48,21 +48,33 @@ $(document).ready(function () {
 
     // Event listener to save buttons
 
-    $('.saveBtn').click(function (){
+    $('.saveBtn').click(function () {
         // grab values of the text areas (class of descripton)
+        // let entry = $(this).siblings().find('.hour')
+        let hour = $(this).parent().attr('id');
+        let text = $(this).parent().siblings('.description').val();
+
+        let savedData = JSON.parse(localStorage.getItem('savedData')) || {};
         // Save to local storage using id's as keys and the 
         // values of the text areas for the values
+        // Update the savedData object with the new value
+        savedData[hour] = text;
 
+        // Save the updated object back to local storage
+        localStorage.setItem('savedData', JSON.stringify(savedData));
     })
 
     // load any saved data from local storage
+    function populateTextAreas() {
+        let savedData = JSON.parse(localStorage.getItem('savedData'));
+    
+        if (savedData) {
+          Object.keys(savedData).forEach(function(key) {
+            $('#' + key).find('.description').val(savedData[key]);
+          });
+        }
 
-
-
-
-
-
-
-
+        populateTextAreas();
+    }
 
 })
