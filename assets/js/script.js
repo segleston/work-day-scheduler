@@ -16,10 +16,8 @@ $(document).ready(function () {
     function updateHour() {
         // current hour of the day
         let currentHour = dayjs().hour()
-        console.log(currentHour)
         // grabs class for the time blocks and stores in timeBlocks var
         let timeBlocks = $('.time-block')
-        console.log(timeBlocks)
 
         timeBlocks.each(function() {
             // parse the id for each time block and compare the block hour to the current time
@@ -32,9 +30,9 @@ $(document).ready(function () {
                 $(this).removeClass('past')
                 $(this).addClass('present')
             } else {
-                $(this).removeClass('past')
-                $(this).removeClass('present')
-                $(this).addclass('future')
+                $(this).removeClass('past present')
+                // $(this).removeClass('present')
+                $(this).addClass('future')
             }
 
 
@@ -52,29 +50,28 @@ $(document).ready(function () {
         // grab values of the text areas (class of descripton)
         // let entry = $(this).siblings().find('.hour')
         let hour = $(this).parent().attr('id');
-        let text = $(this).parent().siblings('.description').val();
+        let text = $(this).parent().children('.description').val();
+        console.log(text)
 
-        let savedData = JSON.parse(localStorage.getItem('savedData')) || {};
-        // Save to local storage using id's as keys and the 
-        // values of the text areas for the values
-        // Update the savedData object with the new value
-        savedData[hour] = text;
-
-        // Save the updated object back to local storage
-        localStorage.setItem('savedData', JSON.stringify(savedData));
+        // let savedData = JSON.parse(localStorage.getItem('savedData')) || {};
+        // savedData[hour] = text;
+    
+        localStorage.setItem(hour, text);
     })
 
     // load any saved data from local storage
     function populateTextAreas() {
-        let savedData = JSON.parse(localStorage.getItem('savedData'));
-    
-        if (savedData) {
-          Object.keys(savedData).forEach(function(key) {
-            $('#' + key).find('.description').val(savedData[key]);
-          });
+        // let savedData = JSON.parse(localStorage.getItem('savedData'));
+        for (i = 8; i <= 20; i++) {
+        let value = localStorage.getItem(i)
+        let hour = $('#' + i)
+        hour.children('.description').val(value)
         }
-
-        populateTextAreas();
+        // if (savedData) {
+        //   Object.keys(savedData).forEach(function(key) {
+        //     $('#' + key).find('.description').val(savedData[key]);
+        //   });
+        // }
     }
-
-})
+    populateTextAreas();
+});
