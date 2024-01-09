@@ -22,8 +22,8 @@ This app:
 
 
 ## Credits
-Tutor Cody Junier
-Class TA Chris Kratz
+- Tutor Cody Junier
+- Class TA Chris Kratz
 
 ## License
 
