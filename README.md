@@ -5,6 +5,8 @@ A calendar application that allows a user to save events for each hour of the da
 
 ## Usage
 
+Live link: https://segleston.github.io/work-day-scheduler/ 
+
 This app:
 -   Displays the current day and time at the top of the calender when a user opens the planner.
 
