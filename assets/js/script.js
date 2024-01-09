@@ -7,7 +7,7 @@ $(document).ready(function () {
         $('#currentDay').text(dayjs().format
             ('dddd, MMMM D, YYYY'))
         $('#currentTime').text(dayjs().format
-            ('h:mm:ss'))
+            ('HH:mm:ss'))
     }
 
     // interval to display the time and update every second
@@ -62,7 +62,7 @@ $(document).ready(function () {
     // load any saved data from local storage
     function populateTextAreas() {
         // let savedData = JSON.parse(localStorage.getItem('savedData'));
-        for (i = 8; i <= 20; i++) {
+        for (i = 9; i <= 18; i++) {
         let value = localStorage.getItem(i)
         let hour = $('#' + i)
         hour.children('.description').val(value)
